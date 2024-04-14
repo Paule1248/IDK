@@ -1,0 +1,88 @@
+getgenv().SecureMode = true
+
+local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/UI-Interface/CustomFIeld/main/RayField.lua'))()
+
+
+local Window = Rayfield:CreateWindow({
+    Name = "Rayfield Example Window",
+    LoadingTitle = "Rayfield Interface Suite",
+    LoadingSubtitle = "by Sirius",
+    ConfigurationSaving = {
+       Enabled = true,
+       FolderName = nil, -- Create a custom folder for your hub/game
+       FileName = "Big Hub"
+    }
+ })
+
+
+ local Tab = Window:CreateTab("Main", 4483362458) -- Title, Image
+
+--Value
+_G.AutoBlow = false
+_G.AutoHatch20k = false
+_G.AutoSell = false
+
+--functions
+function AutoBlowa()
+    while AutoBlow ==true do
+        local ohString1 = "BlowBubble"
+        game:GetService("ReplicatedStorage").RemoteEvent:FireServer(ohString1)
+        wait(0.1)
+    end
+end
+function AutoHatch20ka()
+    while _G.AutoHatch20k == true do
+        local ohString1 = "PurchaseEgg"
+        local ohString2 = "30K Ultra Egg"
+         local ohString3 = "Multi"
+        game:GetService("ReplicatedStorage").RemoteEvent:FireServer(ohString1, ohString2, ohString3)
+        wait(0.3)
+    end
+end
+function AutoSella()
+    while _G.AutoSell == true do
+        local args = {
+            [1] = "SellBubble",
+            [2] = "20K EventSell"
+        }
+        game:GetService("ReplicatedStorage").RemoteEvent:FireServer(unpack(args))
+        wait(0.5)
+    end
+end
+
+
+
+--toggles
+
+local Toggle = Tab:CreateToggle({
+    Name = "AutoBlow",
+    Info = "Toggle info/Description.", -- Speaks for itself, Remove if none.
+    CurrentValue = false,
+    Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+    Callback = function(Value)
+        _G.AutoBlow = Value
+        AutoBlowa()
+    end,
+ })
+
+ local Toggle = Tab:CreateToggle({
+    Name = "AutoSell",
+    Info = "Toggle info/Description.", -- Speaks for itself, Remove if none.
+    CurrentValue = false,
+    Flag = "Toggle2", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+    Callback = function(Value)
+        _G.AutoSell = Value
+        AutoSella()
+    end,
+ })
+
+ local Toggle = Tab:CreateToggle({
+    Name = "Auto Hatch 20k",
+    Info = "Toggle info/Description.", -- Speaks for itself, Remove if none.
+    CurrentValue = false,
+    Flag = "Toggle3", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+    Callback = function(Value)
+        _G.AutoHatch20k = Value
+        AutoHatch20ka()
+    end,
+ })
