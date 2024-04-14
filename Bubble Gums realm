@@ -24,7 +24,7 @@ _G.AutoSell = false
 
 --functions
 function AutoBlowa()
-    while AutoBlow ==true do
+    while _G.AutoBlow ==true do
         local ohString1 = "BlowBubble"
         game:GetService("ReplicatedStorage").RemoteEvent:FireServer(ohString1)
         wait(0.1)
