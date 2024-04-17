@@ -38,7 +38,9 @@ function AutoDrop()
   while _G.AutoDropa == true do
     for _, Cube in ipairs(CubeFolder:GetChildren()) do
       print(Cube.Position)
-      game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Cube.Position)
+      local ohString1 = Cube.Name
+      game:GetService("ReplicatedStorage").Signals.Drop:FireServer(ohString1)
+      --game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Cube.Position)
       wait(0.1)
   end
   wait(0.1)
@@ -82,3 +84,4 @@ Misc:AddButton({
       ReloadScript()
   	end    
 })
+
