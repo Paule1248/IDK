@@ -85,3 +85,10 @@ Misc:AddButton({
   	end    
 })
 
+Misc:AddButton({
+	Name = "ReloadScript",
+	Callback = function()
+      ReloadScript()
+  	end    
+})
+
