@@ -10,13 +10,28 @@ local Tab = Window:MakeTab({
 })
 
 --locals
+local Workspace = game:GetService("Workspace")
+local CubeFolder = Workspace.Folder
 _G.AutoRolla = false
+_G.AutoDropa = false
 
 --function
 function AutoRoll()
   while _G.AutoRolla == true do
     game:GetService("ReplicatedStorage").Signals.Button:FireServer()
-    wait(0.1)
+     wait(0.1)
+  end
+  
+end
+
+function AutoDrop()
+  while _G.AutoDropa == true do
+    for _, Cube in ipairs(CubeFolder:GetChildren()) do
+      print(Cube.Position)
+      game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Cube.Position)
+      wait(0.1)
+  end
+  wait(0.1)
   end
   
 end
@@ -27,5 +42,14 @@ Tab:AddToggle({
 	Callback = function(Value)
 		_G.AutoRolla = Value
     AutoRoll()
+	end    
+})
+
+Tab:AddToggle({
+	Name = "Auto Collect Drops",
+	Default = false,
+	Callback = function(Value)
+		_G.AutoDropa = Value
+    AutoDrop()
 	end    
 })
