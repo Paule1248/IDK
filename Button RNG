@@ -77,7 +77,7 @@ Main:AddToggle({
 
 
 Misc:AddButton({
-	Name = "Button!",
+	Name = "ReloadScript",
 	Callback = function()
       ReloadScript()
   	end    
