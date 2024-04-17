@@ -3,11 +3,21 @@ local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shl
 
 local Window = OrionLib:MakeWindow({Name = "Title of the library", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
 
-local Tab = Window:MakeTab({
+
+--Tabs
+local Main = Window:MakeTab({
 	Name = "Main",
 	Icon = "rbxassetid://4483345998",
 	PremiumOnly = false
 })
+
+local Misc = Window:MakeTab({
+	Name = "Misc",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+
 
 --locals
 local Workspace = game:GetService("Workspace")
@@ -36,7 +46,18 @@ function AutoDrop()
   
 end
 
-Tab:AddToggle({
+
+function ReloadScript()
+  _G.AutoRolla = false
+  _G.AutoDropa = false
+  loadstring(game:HttpGet('https://raw.githubusercontent.com/Paule1248/IDK/main/Button%20RNG'))()
+end
+
+
+
+
+--IDK
+Main:AddToggle({
 	Name = "AutoRoll",
 	Default = false,
 	Callback = function(Value)
@@ -45,11 +66,19 @@ Tab:AddToggle({
 	end    
 })
 
-Tab:AddToggle({
+Main:AddToggle({
 	Name = "Auto Collect Drops",
 	Default = false,
 	Callback = function(Value)
 		_G.AutoDropa = Value
     AutoDrop()
 	end    
+})
+
+
+Misc:AddButton({
+	Name = "Button!",
+	Callback = function()
+      ReloadScript()
+  	end    
 })
